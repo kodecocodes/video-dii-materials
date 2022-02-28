@@ -1,4 +1,5 @@
-/// Copyright (c) 2022 Razeware LLC
+//
+/// Copyright (c) 2019 Razeware LLC
 ///
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -18,10 +19,6 @@
 /// merger, publication, distribution, sublicensing, creation of derivative works,
 /// or sale is expressly withheld.
 ///
-/// This project and source code may use libraries or frameworks that are
-/// released under various Open-Source licenses. Use of those libraries and
-/// frameworks are governed by their own individual licenses.
-///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 /// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -33,22 +30,43 @@
 import SwiftUI
 
 struct ContentView: View {
+  @EnvironmentObject var cellData: CellStore
+  @EnvironmentObject var modalViews: ModalViews
 
+  @State private var cellShape = CellShape.roundedRect
+  
   var body: some View {
-    let strokeStyle = StrokeStyle(lineWidth: 8,
-                                  lineCap: .round,
-                                  lineJoin: .round,
-                                  dash: [30, 20, 5, 20],
-                                  dashPhase: 20)
+    ZStack {
+      GeometryReader { geometry in
+        BackgroundView(size: geometry.size)
+      }
+      .edgesIgnoringSafeArea(.all)
+      .sheet(isPresented: $modalViews.showShapes) {
+        ShapeSelectionGrid(selectedCellShape: $cellShape)
+      }
+      .fullScreenCover(isPresented: $modalViews.showDrawingPad) {
+        DrawingPadSwiftUI()
+        //TODO: Pass Cell Drawing back to drawing pad
+      }
+    }
+    .onChange(of: cellShape) { newShape in
+      guard let cell = cellData.selectedCell else { return }
+      cellData.updateShape(cell: cell, shape: newShape)
+    }
+  }
+}
 
-    Shapes()
-      .padding()
+extension ContentView {
+  class ModalViews: ObservableObject {
+    @Published var showShapes = false
+    @Published var showDrawingPad = false
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView()
+    ContentView().colorScheme(.light)
+      .environmentObject(CellStore())
+      .environmentObject(ContentView.ModalViews())
   }
 }
-

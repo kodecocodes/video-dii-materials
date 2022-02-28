@@ -33,22 +33,19 @@
 import SwiftUI
 
 struct ContentView: View {
+  @EnvironmentObject var cellData: CellStore
 
   var body: some View {
-    let strokeStyle = StrokeStyle(lineWidth: 8,
-                                  lineCap: .round,
-                                  lineJoin: .round,
-                                  dash: [30, 20, 5, 20],
-                                  dashPhase: 20)
-
-    Shapes()
-      .padding()
+    GeometryReader { geometryProxy in
+      BackgroundView(size: geometryProxy.size)
+    }
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
+      .environmentObject(CellStore())
   }
 }
 
