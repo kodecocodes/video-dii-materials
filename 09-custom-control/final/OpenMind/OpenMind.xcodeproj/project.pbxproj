@@ -8,23 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		0A34F14327BF23A300D080F6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A34F14227BF23A300D080F6 /* Colors.xcassets */; };
+		0A59479B27CC9EC200AADB76 /* CellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59479A27CC9EC200AADB76 /* CellModel.swift */; };
+		0A59479D27CCA05400AADB76 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59479C27CCA05400AADB76 /* CellView.swift */; };
+		0A59479F27CCA21F00AADB76 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59479E27CCA21F00AADB76 /* BackgroundView.swift */; };
+		0A67E58C281F253900CAE5E6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A67E58B281F253900CAE5E6 /* Extensions.swift */; };
 		0A993BD827BC3080006295FF /* OpenMindApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A993BD727BC3080006295FF /* OpenMindApp.swift */; };
 		0A993BDA27BC3080006295FF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A993BD927BC3080006295FF /* ContentView.swift */; };
 		0A993BDC27BC3080006295FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A993BDB27BC3080006295FF /* Assets.xcassets */; };
 		0A993BDF27BC3080006295FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A993BDE27BC3080006295FF /* Preview Assets.xcassets */; };
+		0AAA52E1281F95E6004E41C3 /* ColorSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAA52E0281F95E6004E41C3 /* ColorSlider.swift */; };
 		0ABC427D27BC3B8A00351422 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC427C27BC3B8A00351422 /* LaunchScreen.storyboard */; };
-		0ACAF86027C47B38009C0251 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACAF85F27C47B38009C0251 /* Shapes.swift */; };
+		0ACAF86027C47B38009C0251 /* ShapeSelectionGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACAF85F27C47B38009C0251 /* ShapeSelectionGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0A34F14227BF23A300D080F6 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		0A59479A27CC9EC200AADB76 /* CellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellModel.swift; sourceTree = "<group>"; };
+		0A59479C27CCA05400AADB76 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		0A59479E27CCA21F00AADB76 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		0A67E58B281F253900CAE5E6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0A993BD427BC3080006295FF /* Open Mind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Open Mind.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A993BD727BC3080006295FF /* OpenMindApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenMindApp.swift; sourceTree = "<group>"; };
 		0A993BD927BC3080006295FF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0A993BDB27BC3080006295FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A993BDE27BC3080006295FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0AAA52E0281F95E6004E41C3 /* ColorSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSlider.swift; sourceTree = "<group>"; };
 		0ABC427C27BC3B8A00351422 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0ACAF85F27C47B38009C0251 /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		0ACAF85F27C47B38009C0251 /* ShapeSelectionGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeSelectionGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +70,10 @@
 			children = (
 				0A993BD727BC3080006295FF /* OpenMindApp.swift */,
 				0A993BD927BC3080006295FF /* ContentView.swift */,
-				0ACAF85F27C47B38009C0251 /* Shapes.swift */,
+				0A59479E27CCA21F00AADB76 /* BackgroundView.swift */,
+				0AAA52DC281F9344004E41C3 /* Cell */,
+				0AAA52DE281F94FD004E41C3 /* Controls */,
+				0AAA52DD281F9367004E41C3 /* Extensions */,
 				0A993BDB27BC3080006295FF /* Assets.xcassets */,
 				0A34F14227BF23A300D080F6 /* Colors.xcassets */,
 				0ABC427C27BC3B8A00351422 /* LaunchScreen.storyboard */,
@@ -75,6 +88,32 @@
 				0A993BDE27BC3080006295FF /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0AAA52DC281F9344004E41C3 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0ACAF85F27C47B38009C0251 /* ShapeSelectionGrid.swift */,
+				0A59479A27CC9EC200AADB76 /* CellModel.swift */,
+				0A59479C27CCA05400AADB76 /* CellView.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		0AAA52DD281F9367004E41C3 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0A67E58B281F253900CAE5E6 /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0AAA52DE281F94FD004E41C3 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				0AAA52E0281F95E6004E41C3 /* ColorSlider.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,9 +210,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A59479F27CCA21F00AADB76 /* BackgroundView.swift in Sources */,
 				0A993BDA27BC3080006295FF /* ContentView.swift in Sources */,
+				0A59479D27CCA05400AADB76 /* CellView.swift in Sources */,
 				0A993BD827BC3080006295FF /* OpenMindApp.swift in Sources */,
-				0ACAF86027C47B38009C0251 /* Shapes.swift in Sources */,
+				0ACAF86027C47B38009C0251 /* ShapeSelectionGrid.swift in Sources */,
+				0A59479B27CC9EC200AADB76 /* CellModel.swift in Sources */,
+				0AAA52E1281F95E6004E41C3 /* ColorSlider.swift in Sources */,
+				0A67E58C281F253900CAE5E6 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

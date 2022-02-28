@@ -13,7 +13,7 @@
 		0A993BDC27BC3080006295FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A993BDB27BC3080006295FF /* Assets.xcassets */; };
 		0A993BDF27BC3080006295FF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A993BDE27BC3080006295FF /* Preview Assets.xcassets */; };
 		0ABC427D27BC3B8A00351422 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0ABC427C27BC3B8A00351422 /* LaunchScreen.storyboard */; };
-		0ACAF86027C47B38009C0251 /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACAF85F27C47B38009C0251 /* Shapes.swift */; };
+		0ACAF86027C47B38009C0251 /* ShapeSelectionGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACAF85F27C47B38009C0251 /* ShapeSelectionGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +24,7 @@
 		0A993BDB27BC3080006295FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A993BDE27BC3080006295FF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0ABC427C27BC3B8A00351422 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		0ACAF85F27C47B38009C0251 /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		0ACAF85F27C47B38009C0251 /* ShapeSelectionGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeSelectionGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 			children = (
 				0A993BD727BC3080006295FF /* OpenMindApp.swift */,
 				0A993BD927BC3080006295FF /* ContentView.swift */,
-				0ACAF85F27C47B38009C0251 /* Shapes.swift */,
+				0ACAF85F27C47B38009C0251 /* ShapeSelectionGrid.swift */,
 				0A993BDB27BC3080006295FF /* Assets.xcassets */,
 				0A34F14227BF23A300D080F6 /* Colors.xcassets */,
 				0ABC427C27BC3B8A00351422 /* LaunchScreen.storyboard */,
@@ -173,7 +173,7 @@
 			files = (
 				0A993BDA27BC3080006295FF /* ContentView.swift in Sources */,
 				0A993BD827BC3080006295FF /* OpenMindApp.swift in Sources */,
-				0ACAF86027C47B38009C0251 /* Shapes.swift in Sources */,
+				0ACAF86027C47B38009C0251 /* ShapeSelectionGrid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

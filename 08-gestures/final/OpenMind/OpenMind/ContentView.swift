@@ -33,7 +33,7 @@
 import SwiftUI
 
 struct ContentView: View {
-  @EnvironmentObject var cellData: CellStore
+  @EnvironmentObject var cellStore: CellStore
 
   var body: some View {
     GeometryReader { geometryProxy in
@@ -48,4 +48,3 @@ struct ContentView_Previews: PreviewProvider {
       .environmentObject(CellStore())
   }
 }
-

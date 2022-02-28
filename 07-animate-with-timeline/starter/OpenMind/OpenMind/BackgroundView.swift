@@ -37,12 +37,10 @@ struct BackgroundView: View {
 
   var body: some View {
     ZStack {
-      Color.teal.opacity(0.2)
+      Color.teal.opacity(0.7)
         .ignoresSafeArea()
-        .onTapGesture {
-          cellStore.selectedCell = nil
-        }
-
+        .onTapGesture { cellStore.selectedCell = nil }
+      
       ForEach(cellStore.cells) { cell in
         CellView(cell: cell)
       }

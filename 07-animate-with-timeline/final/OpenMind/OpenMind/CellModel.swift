@@ -37,7 +37,6 @@ let minCellSize = CGSize(width: 200, height: 100)
 
 struct Cell: Identifiable, Equatable {
   var id = UUID()
-
   var color = Color("Violet")
   var size = minCellSize
   var offset = CGSize.zero
@@ -47,13 +46,10 @@ struct Cell: Identifiable, Equatable {
 
 class CellStore: ObservableObject {
   @Published var selectedCell: Cell?
-  
+
   @Published var cells: [Cell] = [
-    Cell(color: .red,
-         text: "Drawing in SwiftUI"),
-    Cell(color: .green,
-         offset: CGSize(width: -50, height: -200),
-         text: "Shapes")
+    Cell(color: .red, text: "Drawing in SwiftUI!"),
+    Cell(color: .green, offset: CGSize(width: 100, height: 300), text: "Shapes")
   ]
 
   private func indexOf(cell: Cell) -> Int {

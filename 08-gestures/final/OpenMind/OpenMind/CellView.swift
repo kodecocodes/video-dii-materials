@@ -34,23 +34,17 @@ import SwiftUI
 
 struct CellView: View {
   @EnvironmentObject var cellStore: CellStore
-
+  let cell: Cell
   @State private var text: String = ""
-  @State var dashPhase: Double = 0
+  @FocusState var textFieldIsFocused: Bool
   @State private var offset: CGSize = .zero
   @State private var currentOffset: CGSize = .zero
 
-  let cell: Cell
   var isSelected: Bool {
     cell == cellStore.selectedCell
   }
 
   var body: some View {
-    let basicStyle = StrokeStyle(lineWidth: 5, lineJoin: .round)
-    let selectedStyle = StrokeStyle(
-      lineWidth: 7, lineCap: .round, lineJoin: .round,
-      dash: [50, 10, 20, 10, 10, 10, 5, 10, 5, 10], dashPhase: dashPhase)
-
     let drag = DragGesture()
       .onChanged { drag in
         offset = currentOffset + drag.translation
@@ -62,33 +56,48 @@ struct CellView: View {
 
     ZStack {
       cell.shape.shape
-        .foregroundColor(.white)
-      
-      if isSelected {
-        cell.shape.shape
-          .stroke(cell.color, style: selectedStyle)
-
-        TimelineView(.periodic(from: .now, by: 0.3)) { context in
-          cell.shape.shape
-            .stroke(cell.color.opacity(0.7), style: selectedStyle)
-            .onChange(of: context.date) { (date: Date) in
-              dashPhase += 6
-            }
-        }
-      } else {
-        cell.shape.shape
-          .stroke(cell.color, style: basicStyle)
+        .foregroundColor(Color(uiColor: .systemBackground))
+      TimelineView(.animation(minimumInterval: 0.2)) { context in
+        StrokeView(cell: cell, isSelected: isSelected, date: context.date)
       }
 
       TextField("Enter cell text", text: $text)
         .padding()
         .multilineTextAlignment(.center)
+        .focused($textFieldIsFocused)
+    }
+    .onAppear { text = cell.text }
+    .onChange(of: isSelected) { isSelected in
+      if !isSelected { textFieldIsFocused = false }
     }
     .frame(width: cell.size.width, height: cell.size.height)
     .offset(cell.offset + offset)
-    .onAppear { text = cell.text }
     .onTapGesture { cellStore.selectedCell = cell }
     .simultaneousGesture(drag)
+  }
+}
+
+extension CellView {
+  struct StrokeView: View {
+    let cell: Cell
+    let isSelected: Bool
+    let date: Date
+    @State var dashPhase: Double = 0
+
+    var body: some View {
+      let basicStyle = StrokeStyle(lineWidth: 5, lineJoin: .round)
+      let selectedStyle = StrokeStyle(
+        lineWidth: 7, lineCap: .round, lineJoin: .round,
+        dash: [50, 10, 20, 10, 20, 10, 5, 10, 5, 10], dashPhase: dashPhase)
+
+      cell.shape.shape
+        .stroke(
+          cell.color.opacity(isSelected ? 0.8 : 1),
+          style: isSelected ? selectedStyle : basicStyle)
+        .onChange(of: date) { _ in
+          dashPhase += 8
+        }
+    }
   }
 }
 
@@ -98,18 +107,15 @@ struct CellView_Previews: PreviewProvider {
       .previewLayout(.sizeThatFits)
       .padding()
       .environmentObject(CellStore())
-
-    HeartExample()
   }
 }
 
-
-//MARK: - Heart Example
+// MARK: - Heart Example
 struct HeartExample: View {
   @State var dashPhase: Double = 0
 
   var body: some View {
-    let selectedStyle = StrokeStyle(
+    let style = StrokeStyle(
       lineWidth: 8,
       lineCap: .round,
       lineJoin: .round,
@@ -118,8 +124,8 @@ struct HeartExample: View {
 
     TimelineView(.animation) { context in
       VStack {
-        Heart().stroke(.teal, style: selectedStyle)
-        MirroredHeart().stroke(.red, style: selectedStyle)
+        Heart().stroke(.teal, style: style)
+        MirroredHeart().stroke(.red, style: style)
       }
       .onChange(of: context.date) { (date: Date) in
         withAnimation {
@@ -155,5 +161,3 @@ struct MirroredHeart: Shape {
     return path
   }
 }
-
-

@@ -33,22 +33,36 @@
 import SwiftUI
 
 struct ContentView: View {
+  @EnvironmentObject var cellStore: CellStore
+  @EnvironmentObject var modalViews: ContentView.ModalViews
+
+  @State private var cellShape = CellShape.roundedRect
 
   var body: some View {
-    let strokeStyle = StrokeStyle(lineWidth: 8,
-                                  lineCap: .round,
-                                  lineJoin: .round,
-                                  dash: [30, 20, 5, 20],
-                                  dashPhase: 20)
+    GeometryReader { geometryProxy in
+      BackgroundView(size: geometryProxy.size)
+    }
+    .onChange(of: cellShape) { newShape in
+      guard let cell = cellStore.selectedCell else { return }
+      cellStore.updateShape(cell: cell, shape: newShape)
+    }
+    .sheet(isPresented: $modalViews.showShapes) {
+      ShapeSelectionGrid(selectedCellShape: $cellShape)
+    }
+  }
+}
 
-    Shapes()
-      .padding()
+extension ContentView {
+  class ModalViews: ObservableObject {
+    @Published var showShapes = false
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
+      .environmentObject(CellStore())
+      .environmentObject(ContentView.ModalViews())
   }
 }
 

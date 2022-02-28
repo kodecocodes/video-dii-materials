@@ -33,9 +33,9 @@
 import SwiftUI
 
 struct ContentView: View {
-
   var body: some View {
-    BackgroundView()
+    ShapeSelectionGrid()
+      .padding()
   }
 }
 
@@ -44,4 +44,3 @@ struct ContentView_Previews: PreviewProvider {
     ContentView()
   }
 }
-

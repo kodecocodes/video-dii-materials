@@ -34,23 +34,20 @@ import SwiftUI
 
 struct CellView: View {
   @EnvironmentObject var cellStore: CellStore
-
+  let cell: Cell
   @State private var text: String = ""
 
-  let cell: Cell
   var isSelected: Bool {
     cell == cellStore.selectedCell
   }
 
-  let basicStyle = StrokeStyle(lineWidth: 5, lineJoin: .round)
-  let selectedStyle = StrokeStyle(
-    lineWidth: 3,
-    lineCap: .round,
-    lineJoin: .round,
-    dash: [50, 10, 20, 10, 10, 10, 5, 10, 5, 10],
-    dashPhase: 0)
-
   var body: some View {
+    let basicStyle = StrokeStyle(lineWidth: 5, lineJoin: .round)
+    let selectedStyle = StrokeStyle(
+      lineWidth: 7, lineCap: .round, lineJoin: .round,
+      dash: [50, 10, 20, 10, 20, 10, 5, 10, 5, 10], dashPhase: 0
+    )
+
     ZStack {
       cell.shape.shape
         .foregroundColor(.white)
@@ -61,9 +58,9 @@ struct CellView: View {
         .padding()
         .multilineTextAlignment(.center)
     }
+    .onAppear { text = cell.text }
     .frame(width: cell.size.width, height: cell.size.height)
     .offset(cell.offset)
-    .onAppear { text = cell.text }
     .onTapGesture { cellStore.selectedCell = cell }
   }
 }
@@ -83,19 +80,19 @@ struct HeartExample: View {
   @State var dashPhase: Double = 0
 
   var body: some View {
-    let selectedStyle = StrokeStyle(
+    let style = StrokeStyle(
       lineWidth: 8,
       lineCap: .round,
       lineJoin: .round,
       dash: [50, 20, 20, 20, 10, 15, 5, 15, 5, 15],
       dashPhase: dashPhase)
 
-    TimelineView(.periodic(from: .now, by: 0.3)) { context in
+    TimelineView(.animation(minimumInterval: 0.4)) { context in
       VStack {
-        Heart().stroke(.teal, style: selectedStyle)
-        MirroredHeart().stroke(.red, style: selectedStyle)
+        Heart().stroke(.teal, style: style)
+        MirroredHeart().stroke(.red, style: style)
       }
-      .onChange(of: context.date) { (date: Date) in
+      .onChange(of: context.date) { (_: Date) in
           dashPhase += 6
       }
     }

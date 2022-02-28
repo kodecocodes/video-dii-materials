@@ -33,28 +33,23 @@
 import SwiftUI
 
 struct CellView: View {
+  let cell: Cell
+  @State private var text: String = ""
   @EnvironmentObject var cellStore: CellStore
 
-  @State private var text: String = ""
-
-  let cell: Cell
   var isSelected: Bool {
     cell == cellStore.selectedCell
   }
 
-  let basicStyle = StrokeStyle(lineWidth: 5, lineJoin: .round)
-  let selectedStyle = StrokeStyle(
-    lineWidth: 3,
-    lineCap: .round,
-    lineJoin: .round,
-    dash: [20, 10, 15, 10, 10, 10, 5, 10],
-    dashPhase: 0)
-
   var body: some View {
+    let basicStyle = StrokeStyle(lineWidth: 5, lineJoin: .round)
+    let selectedStyle = StrokeStyle(lineWidth: 7, lineCap: .round, lineJoin: .round,
+                                    dash: [50, 15, 30, 15, 15, 15, 5, 10, 5, 15], dashPhase: 0)
+
     ZStack {
-      cell.shape.shape
+      cell.shape?.shape
         .foregroundColor(.white)
-      cell.shape.shape
+      cell.shape?.shape
         .stroke(cell.color, style: isSelected ? selectedStyle : basicStyle)
 
       TextField("Enter cell text", text: $text)

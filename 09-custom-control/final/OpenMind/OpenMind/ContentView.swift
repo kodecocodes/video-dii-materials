@@ -33,22 +33,31 @@
 import SwiftUI
 
 struct ContentView: View {
+  @EnvironmentObject var cellStore: CellStore
+  @State var sliderValue: Double = 0
 
   var body: some View {
-    let strokeStyle = StrokeStyle(lineWidth: 8,
-                                  lineCap: .round,
-                                  lineJoin: .round,
-                                  dash: [30, 20, 5, 20],
-                                  dashPhase: 20)
-
-    Shapes()
+    VStack {
+      VStack {
+        ColorSlider(
+          sliderValue: $sliderValue,
+          range: 0...255,
+          color: cellStore.selectedCell?.color ?? .blue)
+        Text("\(String(format: "%.0f", sliderValue))")
+      }
       .padding()
+      .frame(height: 80)
+
+      GeometryReader { geometryProxy in
+        BackgroundView(size: geometryProxy.size)
+      }
+    }
   }
 }
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
+      .environmentObject(CellStore())
   }
 }
-
